@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<GridPane fx:controller="inventorySystem.ControllerProductForm"
+            xmlns:fx="http://javafx.com/fxml"
+            alignment="CENTER">
+    <padding>
+        <Insets top="15" bottom="15"/>
+    </padding>
+
+    <BorderPane style="-fx-border-color: black; -fx-border-width:1; -fx-border-style:solid; -fx-border-radius:10"
+                GridPane.rowIndex="0" GridPane.columnIndex="0">
+        <padding>
+            <Insets top="15" left="15" right="15" bottom="15"/>
+        </padding>
+        <left>
+            <GridPane alignment="top_center" hgap="10" vgap="10"
+                      gridLinesVisible="false">
+                <padding>
+                    <Insets top="15" left="15" right="25"/>
+                </padding>
+
+                <Label fx:id="topLabel" text="Modify Product" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                    <font>
+                        <Font name="Calibri bold" size="18"/>
+                    </font>
+                </Label>
+
+                <Label text="ID" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Label text="Name" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <Label text="Inv" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <Label text="Price/Cost" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <Label text="Max" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                <Label text="Min" GridPane.rowIndex="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+
+                <TextField fx:id="idProductForm" GridPane.rowIndex="2" GridPane.columnIndex="1" disable="true"/>
+                <TextField fx:id="nameProductForm" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <TextField fx:id="invProductForm" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                <TextField fx:id="priceProductForm" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                <TextField fx:id="maxProductForm" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+                <TextField fx:id="minProductForm" GridPane.rowIndex="6" GridPane.columnIndex="3" />
+            </GridPane>
+        </left>
+        <right>
+            <GridPane vgap="10" gridLinesVisible="false">
+                <TextField fx:id="searchPartsFieldProductForm" onKeyReleased="#searchPartsProductForm" GridPane.rowIndex="0" GridPane.columnIndex="0" promptText="Search by Part ID or Name"/>
+                <TableView fx:id="partTable" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <columns>
+                        <TableColumn fx:id="partId" text="Part ID">
+                        </TableColumn>
+                        <TableColumn fx:id="partName" text="Part Name" prefWidth="160">
+                        </TableColumn>
+                        <TableColumn fx:id="partInventory" text="Inventory">
+                        </TableColumn>
+                        <TableColumn fx:id="partPrice" text="Cost per Unit">
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <Button onAction="#addAssociatedPartButton" text="Add" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="RIGHT"/>
+                <TableView fx:id="associatedPartTable" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <placeholder>
+                        <Label text="Add associated parts from the table above"/>
+                    </placeholder>
+                    <columns>
+                        <TableColumn fx:id="associatedPartId" text="Part ID">
+                        </TableColumn>
+                        <TableColumn fx:id="associatedPartName" text="Part Name" prefWidth="160">
+                        </TableColumn>
+                        <TableColumn fx:id="associatedPartInventory" text="Inventory">
+                        </TableColumn>
+                        <TableColumn fx:id="associatedPartPrice" text="Cost per Unit">
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <Button onAction="#removeAssociatedPartButton" text="Remove Associated Part" GridPane.columnIndex="0" GridPane.rowIndex="4" alignment="TOP_RIGHT" GridPane.halignment="RIGHT"/>
+                <HBox spacing="10" alignment="top_right" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                    <padding>
+                        <Insets bottom="10" right="10" top="10"/>
+                    </padding>
+                    <Button onAction="#saveButtonProductForm" text="Save" />
+                    <Button onAction="#backToMainMenu" text="Cancel" />
+                </HBox>
+
+            </GridPane>
+        </right>
+
+    </BorderPane>
+</GridPane>

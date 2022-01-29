@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<BorderPane fx:controller="inventorySystem.ControllerMain"
+            xmlns:fx="http://javafx.com/fxml">
+    <top>
+        <Label text="Inventory Management System">
+            <padding>
+                <Insets bottom="20" left="20" top="20"/>
+            </padding>
+            <font>
+                <Font name="Calibri bold" size="18"/>
+            </font>
+        </Label>
+    </top>
+    <center>
+        <GridPane  alignment="top_center" hgap="30" vgap="10"
+                  gridLinesVisible="false">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0"/>
+                <ColumnConstraints percentWidth="50.0"/>
+            </columnConstraints>
+            <padding>
+                <Insets left="25" right="25" />
+            </padding>
+
+            <BorderPane style="-fx-border-color: black; -fx-border-width:1; -fx-border-style:solid; -fx-border-radius:10"
+                        GridPane.rowIndex="0" GridPane.columnIndex="0">
+                <padding>
+                    <Insets left="10" right="10" />
+                </padding>
+                <top>
+                    <GridPane>
+                        <padding>
+                            <Insets bottom="10" right="10" top="10"/>
+                        </padding>
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="30.0"/>
+                            <ColumnConstraints percentWidth="70.0"/>
+                        </columnConstraints>
+                        <Label text="Parts" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                            <font>
+                                <Font name="Calibri bold" size="14"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="searchPartsField" onKeyReleased="#searchParts" GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Search by Part ID or Name"/>
+                    </GridPane>
+                </top>
+                <center>
+                    <TableView fx:id="partTable" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <columns>
+                            <TableColumn fx:id="partId" text="Part ID">
+                            </TableColumn>
+                            <TableColumn fx:id="partName" text="Part Name" prefWidth="160">
+                            </TableColumn>
+                            <TableColumn fx:id="partInventory" text="Inventory Level">
+                            </TableColumn>
+                            <TableColumn fx:id="partPrice" text="Price/Cost per Unit">
+                            </TableColumn>
+                        </columns>
+                    </TableView>
+                </center>
+                <bottom>
+                    <HBox spacing="10" alignment="top_right">
+                        <padding>
+                            <Insets bottom="10" right="10" top="10"/>
+                        </padding>
+                        <Button text="Add" onAction="#addPartButtonMainForm"/>
+                        <Button text="Modify" onAction="#modifyPartButtonMainForm"/>
+                        <Button text="Delete" onAction="#deletePart"/>
+                    </HBox>
+                </bottom>
+            </BorderPane>
+
+            <BorderPane style="-fx-border-color: black; -fx-border-width:1; -fx-border-style:solid; -fx-border-radius:10"
+                        GridPane.rowIndex="0" GridPane.columnIndex="1">
+                <padding>
+                    <Insets left="10" right="10" />
+                </padding>
+                <top>
+                    <GridPane>
+                        <padding>
+                            <Insets bottom="10" right="10" top="10"/>
+                        </padding>
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="30.0"/>
+                            <ColumnConstraints percentWidth="70.0"/>
+                        </columnConstraints>
+                        <Label text="Products" GridPane.rowIndex="0" GridPane.columnIndex="0">
+                            <font>
+                                <Font name="Calibri bold" size="14"/>
+                            </font>
+                        </Label>
+                        <TextField fx:id="searchProductsField" onKeyReleased="#searchProducts" GridPane.rowIndex="0" GridPane.columnIndex="1" promptText="Search by Product ID or Name"/>
+                    </GridPane>
+                </top>
+                <center>
+                    <TableView fx:id="productTable" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <columns>
+                            <TableColumn fx:id="productId" text="Product ID">
+                            </TableColumn>
+                            <TableColumn fx:id="productName" text="Product Name" prefWidth="140">
+                            </TableColumn>
+                            <TableColumn fx:id="productLevel" text="Inventory Level">
+                            </TableColumn>
+                            <TableColumn fx:id="productPrice" text="Price/Cost per Unit">
+                            </TableColumn>
+                        </columns>
+                    </TableView>
+                </center>
+                <bottom>
+                    <HBox spacing="10" alignment="top_right">
+                        <padding>
+                            <Insets bottom="10" right="10" top="10"/>
+                        </padding>
+                        <Button text="Add" onAction="#addProductButtonMainForm"/>
+                        <Button text="Modify" onAction="#modifyProductButtonMainForm"/>
+                        <Button text="Delete" onAction="#deleteProduct"/>
+                    </HBox>
+                </bottom>
+            </BorderPane>
+
+        </GridPane>
+    </center>
+    <bottom>
+        <HBox alignment="bottom_right">
+            <padding>
+                <Insets bottom="10" right="80" top="10"/>
+            </padding>
+            <Button onAction="#exit" text="Exit"/>
+        </HBox>
+    </bottom>
+</BorderPane>

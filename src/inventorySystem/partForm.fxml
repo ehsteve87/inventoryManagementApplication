@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<GridPane fx:controller="inventorySystem.ControllerPartForm"
+          xmlns:fx="http://javafx.com/fxml" alignment="top_center" hgap="10" vgap="10"
+          gridLinesVisible="false">
+    <padding>
+        <Insets top="15"/>
+    </padding>
+
+    <Label fx:id="topLabel" text="Modify Part" GridPane.rowIndex="0" GridPane.columnIndex="0">
+        <font>
+            <Font name="Calibri bold" size="18"/>
+        </font>
+    </Label>
+
+    <fx:define>
+        <ToggleGroup fx:id="sourceToggleGroup"/>
+    </fx:define>
+
+    <RadioButton fx:id = "inHouseButton" onAction="#radioButtonsClicked" GridPane.rowIndex="0" GridPane.columnIndex="1" text="In-House" toggleGroup="$sourceToggleGroup" selected="true"/>
+    <RadioButton fx:id = "outsourcedButton" onAction="#radioButtonsClicked" GridPane.rowIndex="0" GridPane.columnIndex="2" text="Outsourced" toggleGroup="$sourceToggleGroup" GridPane.columnSpan="2"/>
+
+    <Label text="ID" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <Label text="Name" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <Label text="Inv" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <Label text="Price/Cost" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+    <Label text="Max" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+    <Label text="Min" GridPane.rowIndex="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+    <Label text="Machine ID" fx:id ="manufactureIDLabel" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+
+    <TextField fx:id="idPartForm" GridPane.rowIndex="2" GridPane.columnIndex="1" disable="true"/>
+    <TextField fx:id="namePartForm" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    <TextField fx:id="invPartForm" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    <TextField fx:id="pricePartForm" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+    <TextField fx:id="maxPartForm" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+    <TextField fx:id="minPartForm" GridPane.rowIndex="6" GridPane.columnIndex="3" />
+    <TextField fx:id="manufactureIdPartForm" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
+
+
+
+    <Button text="Save" GridPane.rowIndex="10" GridPane.columnIndex="2"
+        onAction="#saveButtonPartForm"/>
+    <Button text="Cancel" GridPane.rowIndex="10" GridPane.columnIndex="3"
+        onAction="#backToMainMenu"/>
+
+
+</GridPane>
