@@ -18,7 +18,7 @@ public class ControllerPartForm {
 
     @FXML
     public void initialize() {
-        if(ControllerMain.getWhichForm() == "modify") {
+        if(ControllerMain.getWhichForm().equals("modify")) {
             Part partToModify = ControllerMain.getPartToModify();
             idPartForm.setText(String.valueOf(partToModify.getId()));
             namePartForm.setText(partToModify.getName());
@@ -35,7 +35,7 @@ public class ControllerPartForm {
                 manufactureIdPartForm.setText(String.valueOf(((InHouse) partToModify).getMachineId()));
             }
         }
-        if(ControllerMain.getWhichForm() == "add"){
+        if(ControllerMain.getWhichForm().equals("add")){
             idPartForm.setText(((Integer) Inventory.getGlobalPartId()).toString());
             topLabel.setText("Add Part");
         }
@@ -164,7 +164,7 @@ public class ControllerPartForm {
 
 
 
-        if (errorText != ""){
+        if (!errorText.equals("")){
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Data Error");
             errorAlert.setHeaderText("The following problems were encountered:");
@@ -202,7 +202,7 @@ public class ControllerPartForm {
 
         }
 
-        if(topLabel.getText() == "Add Part"){
+        if(topLabel.getText().equals("Add Part")){
             if(inHouseButton.isSelected()){
                 InHouse newPart = new InHouse(Inventory.getAndIncrementGlobalPartId(),name, price, stock, min, max, Integer.parseInt(manufactureIdPartForm.getText()));
             } else {

@@ -13,12 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class ControllerProductForm {
     @FXML
     public void initialize() {
         searchPartsFieldProductForm.setText("");
-        if(ControllerMain.getWhichForm() == "modify") {
+        if(ControllerMain.getWhichForm().equals("modify")) {
             Product productToModify = ControllerMain.getProductToModify();
             idProductForm.setText(String.valueOf(productToModify.getId()));
             nameProductForm.setText(productToModify.getName());
@@ -28,7 +29,7 @@ public class ControllerProductForm {
             minProductForm.setText(String.valueOf(productToModify.getMin()));
             populateAssociatedPartTable(ControllerMain.getProductToModify().getAssociatedParts());
         }
-        if(ControllerMain.getWhichForm() == "add"){
+        if(ControllerMain.getWhichForm().equals("add")){
             topLabel.setText("Add Product");
             idProductForm.setText(((Integer) Product.getGlobalId()).toString());
             populateAssociatedPartTable(associatedPartsForNewProduct);
@@ -130,11 +131,23 @@ public class ControllerProductForm {
 
     public void removeAssociatedPartButton(){
         Part selectedPart = (Part) associatedPartTable.getSelectionModel().getSelectedItem();
-        if(topLabel.getText().contains("Modify Product")){
-            ControllerMain.getProductToModify().deleteAssociatedPart(selectedPart);
+        if (selectedPart == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("No associated part selected");
+            alert.showAndWait();
         }
         else {
-            associatedPartsForNewProduct.remove(selectedPart);
+            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmation.setHeaderText("Remove " + selectedPart.getName() + "?");
+            Optional<ButtonType> answer = confirmation.showAndWait();
+            if(answer.get() == ButtonType.OK){
+                if(topLabel.getText().contains("Modify Product")){
+                    ControllerMain.getProductToModify().deleteAssociatedPart(selectedPart);
+                }
+                else {
+                    associatedPartsForNewProduct.remove(selectedPart);
+                }
+            }
         }
     }
 
@@ -207,9 +220,7 @@ public class ControllerProductForm {
             errorText += "All numbers must be 0 or greater.\n";
         }
 
-
-
-        if (errorText != ""){
+        if (!errorText.equals("")){
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Data Error");
             errorAlert.setHeaderText("The following problems were encountered:");
@@ -217,9 +228,6 @@ public class ControllerProductForm {
             errorAlert.showAndWait();
             return;
         }
-
-
-
 
         if(topLabel.getText().contains("Modify Product")) {
             Product productToModify = Inventory.lookupProduct(Integer.parseInt(idProductForm.getText()));
@@ -231,7 +239,7 @@ public class ControllerProductForm {
             productToModify.setMin(min);
         }
 
-        if(topLabel.getText() == "Add Product"){
+        if(topLabel.getText().equals("Add Product")){
             Product newProduct = new Product(name, price, stock, min, max);
             associatedPartsForNewProduct.forEach(newProduct::addAssociatedPart);
 
