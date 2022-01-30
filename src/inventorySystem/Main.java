@@ -34,10 +34,11 @@ public class Main extends Application{
     }
 
     /**
-     *Creates starting data and launches the application
+     *Creates starting data and launches the application.
      *
      * @param args
      */
+    //JavaDoc folder is located in the root directory of the application (Software I/javadoc)
     public static void main(String[] args) {
 
         Outsourced crown = new Outsourced(Inventory.getAndIncrementGlobalPartId(),"Crown", 2.98, 10, 1, 20, "CostumeCo");

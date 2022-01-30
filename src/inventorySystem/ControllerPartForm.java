@@ -233,11 +233,13 @@ public class ControllerPartForm {
                 int index = Inventory.getAllParts().indexOf(partToModify);
                 InHouse nowAnInHouse = new InHouse(Integer.parseInt(idPartForm.getText()), name, price, stock, max, min, Integer.parseInt(manufactureIdPartForm.getText()));
                 Inventory.getAllParts().set(index, nowAnInHouse);
+                Inventory.getAllParts().remove(Inventory.getAllParts().size() - 1);
             }
             else if (partToModify instanceof InHouse && outsourcedButton.isSelected()){
                 int index = Inventory.getAllParts().indexOf(partToModify);
                 Outsourced nowAnOutsourced = new Outsourced(Integer.parseInt(idPartForm.getText()), name, price, stock, max, min, manufactureIdPartForm.getText());
                 Inventory.getAllParts().set(index, nowAnOutsourced);
+                Inventory.getAllParts().remove(Inventory.getAllParts().size() - 1);
             }
             else {
                 partToModify.setName(name);

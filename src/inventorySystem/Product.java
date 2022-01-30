@@ -5,16 +5,51 @@ import javafx.collections.ObservableList;
 
 import java.util.Arrays;
 
+/**
+ * This class models products
+ */
 public class Product {
+    /**
+     * This variable stores the id of the next product to be made
+     */
     private static int globalId = 1;
+    /**
+     * A product's associated parts
+     */
     private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    /**
+     * The product's ID
+     */
     private int id;
+    /**
+     * The product's name
+     */
     private String name;
+    /**
+     * The product's price
+     */
     private double price;
+    /**
+     * The number of products in stock
+     */
     private int stock;
+    /**
+     * The minimum stock allowed
+     */
     private int min;
+    /**
+     * The maximum stock allowed
+     */
     private int max;
 
+    /**
+     * Constructor for a new product
+     * @param name the name
+     * @param price the price
+     * @param stock number in stock
+     * @param min minimum stock
+     * @param max maximum stock
+     */
     public Product(String name, double price, int stock, int min, int max) {
         this.id = globalId++;
         this.name = name;
