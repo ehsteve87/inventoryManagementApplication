@@ -15,7 +15,22 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ *This class controls the main screen of the application.
+ *
+ * RUNTIME ERROR
+ * In its first iteration, a NumberFormatException occurred if
+ * the user searched for a Part or Product by name instead of by
+ * ID number. The corrections for these errors
+ * can be found in the searchProducts() and searchParts() methods
+ * of this class.
+ */
+
+
 public class ControllerMain {
+    /**
+     * Loads parts and products into their respective tables
+     */
     public void initialize(){
         searchPartsField.setText("");
         partTable.setItems(Inventory.getAllParts());
@@ -32,32 +47,69 @@ public class ControllerMain {
         productPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
-
+    /**
+     * Table that shows the parts
+     */
     @FXML
     private TableView<Part> partTable;
+    /**
+     * Column for part IDs
+     */
     @FXML
     private TableColumn<Part, Integer> partId;
+    /**
+     * Column for part names
+     */
     @FXML
     private TableColumn<Part, String> partName;
+    /**
+     * Column for part inventory levels
+     */
     @FXML
     private TableColumn<Part, Integer> partInventory;
+    /**
+     * Column for part prices
+     */
     @FXML
     private TableColumn<Part, Double> partPrice;
 
+    /**
+     * Table that shows the products
+     */
     @FXML
     private TableView productTable;
+    /**
+     * Column for product IDs
+     */
     @FXML
     private TableColumn productId;
+    /**
+     * Column for product names
+     */
     @FXML
     private TableColumn productName;
+    /**
+     * Column for product inventory levels
+     */
     @FXML
     private TableColumn productLevel;
+    /**
+     * Column for product prices
+     */
     @FXML
     private TableColumn productPrice;
 
-
+    /**
+     * Search field for products table
+     */
     @FXML
     TextField searchProductsField;
+
+    /**
+     * Updates Products table based on text typed into search field
+     *
+     * @throws NumberFormatException This exception occurs when a user types anything that isn't an integer
+     */
     @FXML
     public void searchProducts() throws NumberFormatException{
         String searchText = searchProductsField.getText();
@@ -79,8 +131,17 @@ public class ControllerMain {
         }
     }
 
+    /**
+     * Search field for Parts table
+     */
     @FXML
     TextField searchPartsField;
+
+    /**
+     * Updates Parts table based on text typed into search field
+     *
+     * @throws NumberFormatException This exception occurs when a user types anything that isn't an integer
+     */
     @FXML
     public void searchParts() throws NumberFormatException{
         String searchText = searchPartsField.getText();
@@ -101,10 +162,34 @@ public class ControllerMain {
             initialize();
         }
     }
+
+    /**
+     * Static variable that keeps track of which form the user wants to access
+     */
     private static String whichForm;
+
+    /**
+     * Getter for whichForm variable
+     * @return the form the user wants to access
+     */
     public static String getWhichForm(){return whichForm;}
+
+    /**
+     * Static variable that keeps track of which part the user wants to modify
+     */
     private static Part partToModify;
+
+    /**
+     * Getter for partToModify variable
+     * @return the part the user wants to modify
+     */
     public static Part getPartToModify(){return partToModify;}
+
+    /**
+     * Controls the action of the Modify Part button
+     * @param e event where button is clicked
+     * @throws IOException
+     */
     @FXML
     public void modifyPartButtonMainForm(ActionEvent e) throws IOException {
         partToModify = partTable.getSelectionModel().getSelectedItem();
@@ -122,7 +207,11 @@ public class ControllerMain {
     }
 
 
-
+    /**
+     * Controls the action of the Add Part button
+     * @param e event where button is clicked
+     * @throws IOException
+     */
     @FXML
     public void addPartButtonMainForm(ActionEvent e) throws IOException {
         whichForm = "add";
@@ -134,8 +223,22 @@ public class ControllerMain {
 
     }
 
+    /**
+     * Static variable that keeps track of which product the user wants to modify
+     */
     private static Product productToModify;
+
+    /**
+     * Getter for productToModify variable
+     * @return the product to modify
+     */
     public static Product getProductToModify(){return productToModify;}
+
+    /**
+     * Controls the action of the Modify Product button
+     * @param e the event where the button is clicked
+     * @throws IOException
+     */
     @FXML
     public void modifyProductButtonMainForm(ActionEvent e) throws IOException {
         productToModify = (Product) productTable.getSelectionModel().getSelectedItem();
@@ -152,6 +255,12 @@ public class ControllerMain {
         }
 
     }
+
+    /**
+     * Controls the action of the Add Product button
+     * @param e the event where the button is clicked
+     * @throws IOException
+     */
     @FXML
     public void addProductButtonMainForm(ActionEvent e) throws IOException {
         whichForm = "add";
@@ -163,6 +272,9 @@ public class ControllerMain {
 
     }
 
+    /**
+     * Controls the action of the Delete Part button
+     */
     @FXML
     public void deletePart(){
         Part partToDelete = partTable.getSelectionModel().getSelectedItem();
@@ -178,6 +290,9 @@ public class ControllerMain {
         }
     }
 
+    /**
+     * Controls the action of the Delete Product button
+     */
     @FXML
     public void deleteProduct(){
         Product productToDelete = (Product) productTable.getSelectionModel().getSelectedItem();
@@ -198,6 +313,9 @@ public class ControllerMain {
         }
     }
 
+    /**
+     * Controls the action of the Exit button
+     */
     public void exit(){
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.setTitle("Exit Application");
@@ -209,10 +327,13 @@ public class ControllerMain {
         }
     }
 
+    /**
+     * Creates the various dialog boxes that can be shown from this form
+     * @param type determines which dialog box is shown
+     */
     private void showDialogMainForm(int type) {
 
         Alert warning = new Alert(Alert.AlertType.WARNING);
-        Alert error = new Alert(Alert.AlertType.ERROR);
 
         switch (type) {
             case 1:
@@ -243,7 +364,5 @@ public class ControllerMain {
                 break;
         }
     }
-
-
 
 }

@@ -14,8 +14,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This class controls the Add and Modify Parts forms
+ */
 public class ControllerPartForm {
-
+    /**
+     * If this is the modify form, this method adds the information from the part
+     * to modify into the text fields. If it's the add form, it changes the
+     * title to Add Part.
+     */
     @FXML
     public void initialize() {
         if(ControllerMain.getWhichForm().equals("modify")) {
@@ -43,16 +50,32 @@ public class ControllerPartForm {
 
     }
 
+    /**
+     * The label at the top of the window
+     */
     @FXML
     private Label topLabel;
-
+    /**
+     * The In House radio button
+     */
     @FXML
     private RadioButton inHouseButton;
+    /**
+     * The Outsourced radio button
+     */
     @FXML
     private RadioButton outsourcedButton;
+    /**
+     * The label for machine ID or Company Name
+     */
     @FXML
     private Label manufactureIDLabel;
 
+    /**
+     * Sets manufactureIDLabel to Machine ID or Company Name, depending
+     * on which radio button is selected
+     * @param e the event of clicking a radio button
+     */
     @FXML
     public void radioButtonsClicked(ActionEvent e) {
         if (e.getSource().equals(inHouseButton)) {
@@ -63,22 +86,47 @@ public class ControllerPartForm {
         }
     }
 
-
+    /**
+     * The Part ID field
+     */
     @FXML
     private TextField idPartForm;
+    /**
+     * The Name field
+     */
     @FXML
     private TextField namePartForm;
+    /**
+     * The Inventory field
+     */
     @FXML
     private TextField invPartForm;
+    /**
+     * The Price field
+     */
     @FXML
     private TextField pricePartForm;
+    /**
+     * The Max field
+     */
     @FXML
     private TextField maxPartForm;
+    /**
+     * The Min field
+     */
     @FXML
     private TextField minPartForm;
+    /**
+     * The Company Name / Machine ID field
+     */
     @FXML
     private TextField manufactureIdPartForm;
 
+    /**
+     * This method returns to the main menu
+     * @param e The event of clicking a button
+     * @throws IOException
+     */
     public void backToMainMenu(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainForm.fxml"));
         Scene scene = new Scene(root, 1000, 500);
@@ -87,6 +135,11 @@ public class ControllerPartForm {
         stage.show();
     }
 
+    /**
+     * This method controls the action of the Save button
+     * @param e The event of clicking the Save button
+     * @throws IOException
+     */
     public void saveButtonPartForm(ActionEvent e) throws IOException {
 
         String errorText = "";
@@ -213,6 +266,10 @@ public class ControllerPartForm {
         backToMainMenu(e);
     }
 
+    /**
+     * This method holds the dialog boxes for this form.
+     * @param type The type of dialog box
+     */
     private void showDialogPartForm(int type) {
 
         Alert warning = new Alert(Alert.AlertType.WARNING);

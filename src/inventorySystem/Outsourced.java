@@ -9,10 +9,16 @@ public class Outsourced extends Part {
         Inventory.addPart(this);
     }
 
+    /**
+     * @return the company name
+     */
     public String getMachineId() {
         return companyName;
     }
 
+    /**
+     * @param companyName the company name to set
+     */
     public void setMachineId(String companyName) {
         this.companyName = companyName;
     }

@@ -15,8 +15,18 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Optional;
 
+/**
+ * This class controls the Add and Modify Product forms
+ */
 public class ControllerProductForm {
     @FXML
+    /**
+     * If the Modify form is loaded, this method populates the fields.
+     *
+     * For the Add form, this method changes the title of the form to Add Product.
+     *
+     * For both forms, this method populates the two tables.
+     */
     public void initialize() {
         searchPartsFieldProductForm.setText("");
         if(ControllerMain.getWhichForm().equals("modify")) {
@@ -43,49 +53,109 @@ public class ControllerProductForm {
 
     }
 
+    /**
+     * The search field for the parts table
+     */
     @FXML
     private TextField searchPartsFieldProductForm;
-
+    /**
+     * The Parts table
+     */
     @FXML
     private TableView partTable;
+    /**
+     * Part ID column of the Parts table
+     */
     @FXML
     private TableColumn<Part, Integer> partId;
+    /**
+     * Part Name column of the Parts table
+     */
     @FXML
     private TableColumn<Part, String> partName;
+    /**
+     * Inventory column of the Parts table
+     */
     @FXML
     private TableColumn<Part, Integer> partInventory;
+    /**
+     * Price column of the Parts table
+     */
     @FXML
     private TableColumn<Part, Double> partPrice;
 
+    /**
+     * Associated Part table
+     */
     @FXML
     private TableView associatedPartTable;
+    /**
+     * ID column of the Associated Part table
+     */
     @FXML
     private TableColumn<Part, Integer> associatedPartId;
+    /**
+     * Name column of the Associated Part table
+     */
     @FXML
     private TableColumn<Part, String> associatedPartName;
+    /**
+     * Inventory column of the Associated Part table
+     */
     @FXML
     private TableColumn<Part, Integer> associatedPartInventory;
+    /**
+     * Price field of the Associated Part table
+     */
     @FXML
     private TableColumn<Part, Double> associatedPartPrice;
 
+    /**
+     * Label at the top of the form
+     */
     @FXML
     private Label topLabel;
+    /**
+     * ID field
+     */
     @FXML
     private TextField idProductForm;
+    /**
+     * Name field
+     */
     @FXML
     private TextField nameProductForm;
+    /**
+     * Inventory field
+     */
     @FXML
     private TextField invProductForm;
+    /**
+     * Price field
+     */
     @FXML
     private TextField priceProductForm;
+    /**
+     * Max field
+     */
     @FXML
     private TextField maxProductForm;
+    /**
+     * Min field
+     */
     @FXML
     private TextField minProductForm;
 
+    /**
+     * If this is the add form, this list holds parts that will be associated with the new product
+     */
     @FXML
     private ObservableList<Part> associatedPartsForNewProduct = FXCollections.observableArrayList();
 
+    /**
+     * This method populates the Associated Part table
+     * @param partList A list of parts to add to the Associated Parts table
+     */
     private void populateAssociatedPartTable(ObservableList partList){
         associatedPartTable.setItems(partList);
         associatedPartId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -94,6 +164,10 @@ public class ControllerProductForm {
         associatedPartPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
+    /**
+     * Handles searching the Parts table
+     * @throws NumberFormatException If the user searches for anything but an integer, a NumberFormatException is thrown
+     */
     @FXML
     public void searchPartsProductForm() throws NumberFormatException{
         String searchText = searchPartsFieldProductForm.getText();
@@ -119,6 +193,9 @@ public class ControllerProductForm {
         }
     }
 
+    /**
+     * Controls the Add Associated Part button
+     */
     public void addAssociatedPartButton(){
         Part selectedPart = (Part) partTable.getSelectionModel().getSelectedItem();
         if(topLabel.getText().contains("Modify Product")) {
@@ -129,6 +206,9 @@ public class ControllerProductForm {
         }
     }
 
+    /**
+     * Controls the Remove Associated Part button
+     */
     public void removeAssociatedPartButton(){
         Part selectedPart = (Part) associatedPartTable.getSelectionModel().getSelectedItem();
         if (selectedPart == null){
@@ -151,6 +231,11 @@ public class ControllerProductForm {
         }
     }
 
+    /**
+     * Returns to the main menu
+     * @param e the event of clicking a button
+     * @throws IOException
+     */
     public void backToMainMenu(ActionEvent e) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainForm.fxml"));
         Scene scene = new Scene(root, 1000, 500);
@@ -159,6 +244,11 @@ public class ControllerProductForm {
         stage.show();
     }
 
+    /**
+     * Controls the Save Product button
+     * @param e the event of clicking the Save Product button
+     * @throws IOException
+     */
     public void saveButtonProductForm (ActionEvent e) throws IOException {
         String errorText = "";
 

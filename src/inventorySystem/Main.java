@@ -6,8 +6,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * This class provides a starting point for the application.
+ *
+ * FUTURE ENHANCEMENT
+ * A useful feature for a future version of this software would be to add
+ * controls so users can easily increment and decrement the inventory levels
+ * of Parts and Products.
+ *
+ */
+
+
 public class Main extends Application{
 
+    /**
+     * Creates FXML stage and loads the main form as a scene.
+     *
+     * @param primaryStage
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("mainForm.fxml"));
@@ -16,7 +33,11 @@ public class Main extends Application{
         primaryStage.show();
     }
 
-
+    /**
+     *Creates starting data and launches the application
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         Outsourced crown = new Outsourced(Inventory.getAndIncrementGlobalPartId(),"Crown", 2.98, 10, 1, 20, "CostumeCo");

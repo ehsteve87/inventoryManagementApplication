@@ -9,10 +9,16 @@ public class InHouse extends Part {
         Inventory.addPart(this);
     }
 
+    /**
+     * @return the Machine ID
+     */
     public int getMachineId() {
         return machineId;
     }
 
+    /**
+     * @param machineId the Machine ID to set
+     */
     public void setMachineId(int machineId) {
         this.machineId = machineId;
     }
