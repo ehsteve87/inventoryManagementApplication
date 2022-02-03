@@ -285,7 +285,13 @@ public class ControllerMain {
             confirmation.setHeaderText("Are you sure you want to delete " + partToDelete.getName() + "?");
             Optional<ButtonType> answer = confirmation.showAndWait();
             if(answer.get() == ButtonType.OK) {
-                Inventory.getAllParts().remove(partToDelete);
+                boolean wasDeleted = Inventory.getAllParts().remove(partToDelete);
+                if(!wasDeleted){
+                    Alert notDeleted = new Alert(Alert.AlertType.WARNING);
+                    notDeleted.setTitle("Delete Part");
+                    notDeleted.setHeaderText("Part was not deleted");
+                    notDeleted.showAndWait();
+                }
             }
         }
     }
@@ -305,7 +311,13 @@ public class ControllerMain {
             confirmation.setHeaderText("Are you sure you want to delete " + productToDelete.getName() + "?");
             Optional<ButtonType> answer = confirmation.showAndWait();
             if(answer.get() == ButtonType.OK) {
-                Inventory.getAllProducts().remove(productToDelete);
+                boolean wasDeleted = Inventory.getAllProducts().remove(productToDelete);
+                if(!wasDeleted) {
+                    Alert notDeleted = new Alert(Alert.AlertType.WARNING);
+                    notDeleted.setTitle("Delete Product");
+                    notDeleted.setHeaderText("Product was not deleted");
+                    notDeleted.showAndWait();
+                }
             }
         }
         else {
